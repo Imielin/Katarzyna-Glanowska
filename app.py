@@ -5,7 +5,7 @@ from sqlalchemy import Column, Integer, String, Text
 import statistics
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
+import os
 from numpy import genfromtxt
 from sqlalchemy.ext.declarative import declarative_base
 
