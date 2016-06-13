@@ -1,0 +1,34 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+  <div class="jumbotron">
+    <h1>Adult Data Set </h1>
+    <p><img src="http://i.imgur.com/PvC4799.png" class="img-thumbnail center-block" ></p>
+    <h4> Predict whether income exceeds $50 000 per year based on census data - Data Analysis</h4>
+  </div>
+
+  <div class="page-header">
+    <h1>What do you want to do next?</h1>
+  </div>
+  <p>
+  <div class="btn-group  btn-group-justified">
+    <a href="/raw" class="btn btn-success" role="button" >See data</a>
+    <a href="/result" class="btn btn-primary" role="button" class="center-block">Review general results</a>
+    <a href="/form" class="btn btn-info" role="button" class="center-block">Review detailed results</a>
+  </div>
+  </p>
+    <p></p>
+
+<p><img src="https://media.giphy.com/media/m7FO0p9hTc59e/giphy.gif" class="img-thumbnail center-block" ></p>
+  </div>
+  <div class="col-md-1"></div>
+  </div>
+
+{% endblock %}
+

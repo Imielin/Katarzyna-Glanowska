@@ -1,0 +1,57 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+  <h1>Which attributes are better if you want to earn above 50K$?</h1>
+    <h3>Please choose the attribute:</h3>
+</div>
+
+<form role="form" action="/result1" method="post">
+
+     <div class="form-group">
+        <label for="sel">Select attribute:</label>
+        <select class="form-control" id="sel" name="sel">
+        <option value="AGE">Age</option>
+        <option value="WORKCLASS">Workclass</option>
+        <option value="EDUCATION">Education</option>
+        <option value="OCCUPATION">Occupation</option>
+        <option value="RELATIONSHIP">Relationship</option>
+        <option value="RACE">Race</option>
+        <option value="SEX">Sex</option>
+        <option value="HOURS_PER_WEEK">Hours per week</option>
+        <option value="NATIVE_COUNTRY">Native country</option>
+        </select>
+</div>
+
+    <button type="submit" class="btn btn-default">Go!</button>
+</form>
+
+<div class="page-header">
+    <h1>Results</h1>
+    <h4>People who earn more than 50 000$ per year according to selected attribute:</h4>
+    <div id="chart_div"></div>
+</div>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+
+  google.load('visualization', '1', {'packages':['corechart']});
+  google.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Question');
+    data.addColumn('number', 'Total number');
+    data.addRows( {{ tab|tojson }} );
+    var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_div'));
+    chart.draw(data, {legend: 'none', vAxis: {baseline: 0} });
+  }
+
+</script>
+
+{% endblock %}

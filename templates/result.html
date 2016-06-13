@@ -1,0 +1,81 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Results</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>
+                <p>The number of women and men in database:</p>
+                <div id="chart_div"></div><p></p>
+            </td>
+            <td><p>Average age:</p>
+                <div id="chart_divMA"></div><p></p>
+            </td>
+        </tr>
+        <tr>
+            <td><p>The mean number of working hours per week:</p>
+                <div id="chart_divMH"></div><p></p>
+            </td>
+            <td><p>The number of individuals who earn above $50K/yr:</p>
+                <div id="chart_divMABV"></div><p></p></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load('visualization', '1', {'packages':['corechart']});
+  google.setOnLoadCallback(drawChart);
+  google.setOnLoadCallback(MAdrawChart);
+  google.setOnLoadCallback(MHdrawChart);
+  google.setOnLoadCallback(MABVdrawChart);
+
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Question');
+    data.addColumn('number', 'Total number');
+    data.addRows( {{ data|tojson }} );
+    var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_div'));
+    chart.draw(data, {legend: 'none', vAxis: {baseline: 0} });
+  }
+
+    function MAdrawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Question');
+    data.addColumn('number', 'Average age');
+    data.addRows( {{ data_mean_age|tojson }} );
+    var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_divMA'));
+    chart.draw(data, {legend: 'none', vAxis: {baseline: 0} });
+  }
+
+    function MHdrawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Question');
+    data.addColumn('number', 'Hours per week');
+    data.addRows( {{ data_mean_hours|tojson }} );
+    var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_divMH'));
+    chart.draw(data, {legend: 'none', vAxis: {baseline: 0} });
+  }
+
+    function MABVdrawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Question');
+    data.addColumn('number', 'Total number');
+    data.addRows( {{ data_above_50k|tojson }} );
+    var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_divMABV'));
+    chart.draw(data, {legend: 'none', vAxis: {baseline: 0} });
+  }
+
+</script>
+
+{% endblock %}

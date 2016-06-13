@@ -1,0 +1,50 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Raw data</h1>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>AGE</th>
+        <th>WORKCLASS</th>
+        <th>EDUCATION</th>
+        <th>MARTIAL STATUS</th>
+        <th>OCCUPATION</th>
+        <th>RELATIONSHIP</th>
+        <th>RACE</th>
+        <th>SEX</th>
+        <th>HOURS PER WEEK</th>
+        <th>NATIVE COUNTRY</th>
+        <th>INCOME</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for element in formdata %}
+    <tr>
+        <td>{{ element.ID }}</td>
+        <td>{{ element.AGE }}</td>
+        <td>{{ element.WORKCLASS }}</td>
+        <td>{{ element.EDUCATION }}</td>
+        <td>{{ element.MARTIAL_STATUS }}</td>
+        <td>{{ element.OCCUPATION }}</td>
+        <td>{{ element.RELATIONSHIP }}</td>
+        <td>{{ element.RACE }}</td>
+        <td>{{ element.SEX }}</td>
+        <td>{{ element.HOURS_PER_WEEK }}</td>
+        <td>{{ element.NATIVE_COUNTRY }}</td>
+        <td>{{ element.INCOME }}</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
